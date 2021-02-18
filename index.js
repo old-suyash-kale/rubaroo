@@ -4,7 +4,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const { exec } = require('child_process');
 
-const PORT = process.env.POST || 8080;
+const PORT = process.env.PORT || 8080;
 
 app.use(express.static('client/build'));
 app.use(express.static('public'));
