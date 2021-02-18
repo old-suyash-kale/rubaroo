@@ -7,7 +7,7 @@ import { User } from './context';
 export const useRequest = () => {
   const { user } = useContext(User);
 
-  const request = useCallback((url, o) => new Promise((resolve, reject) => {
+  return useCallback((url, o) => new Promise((resolve, reject) => {
     fetch(BASE_URL + url, {
       method: 'GET',
       ...o,
@@ -23,8 +23,6 @@ export const useRequest = () => {
       }, reject);
     }, reject);
   }), [ user ]);
-
-  return request;
 };
 
 export const useAuth = () => {
