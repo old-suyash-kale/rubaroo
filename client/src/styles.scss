@@ -5,3 +5,11 @@ $primary: #6f42c1;
 $border-radius: 0;
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+body {
+  height: calc(100vh);
+}
+
+#root, .container-fluid, .row {
+  height: 100%;
+}

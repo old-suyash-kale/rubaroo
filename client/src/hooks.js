@@ -1,4 +1,5 @@
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { BASE_URL } from './configs';
 import { User } from './context';
@@ -6,7 +7,7 @@ import { User } from './context';
 export const useRequest = () => {
   const { user } = useContext(User);
 
-  const request = useCallback((url, o) => new Promise((resolve, reject) => {
+  return useCallback((url, o) => new Promise((resolve, reject) => {
     fetch(BASE_URL + url, {
       method: 'GET',
       ...o,
@@ -22,6 +23,15 @@ export const useRequest = () => {
       }, reject);
     }, reject);
   }), [ user ]);
+};
 
-  return request;
+export const useAuth = () => {
+  const { user } = useContext(User);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!user) {
+      history.push('/register');
+    }
+  }, [user, history]);
 };

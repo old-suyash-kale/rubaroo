@@ -15,13 +15,22 @@ io.on('connection', socket => {
   let User = null;
 
   socket.on('register', req => {
-    const { username } = req;
-    if (Users.find(o => o.username === username)) {
+    const username = (req || {}).username ;
+    if (!username) {
+      socket.emit('registered', { message: `username is not required.` });
+    } else if (Users.find(o => o.username === username)) {
       socket.emit('registered', { message: `${username} is not available.` });
     } else {
       User = { id, username };
       Users.push(User);
       socket.emit('registered', { User });
+    }
+  });
+
+  io.on('disconnect', () => {
+    const i = Users.findIndex(o => o.id === id);
+    if (i >= 0) {
+      Users.splice(i, 1);
     }
   });
 
