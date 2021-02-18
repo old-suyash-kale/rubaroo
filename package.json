@@ -1,0 +1,29 @@
+{
+  "name": "rubaroo",
+  "version": "1.0.0",
+  "description": "Video chat application build with [Node.js](https://nodejs.org/) & [React.js](https://reactjs.org/) using [socket.io](https://www.npmjs.com/package/socket.io) & [WebRTC](https://webrtc.org/).",
+  "main": "index.js",
+  "scripts": {
+    "fast": "nodemon -r dotenv/config index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/old-suyash-kale/rubaroo.git"
+  },
+  "keywords": [],
+  "author": "Suyash Kale <master.suyashkale@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/old-suyash-kale/rubaroo/issues"
+  },
+  "homepage": "https://github.com/old-suyash-kale/rubaroo#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.1.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7"
+  }
+}
