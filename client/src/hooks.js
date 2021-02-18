@@ -1,4 +1,5 @@
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { BASE_URL } from './configs';
 import { User } from './context';
@@ -24,4 +25,15 @@ export const useRequest = () => {
   }), [ user ]);
 
   return request;
+};
+
+export const useAuth = () => {
+  const { user } = useContext(User);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!user) {
+      history.push('/register');
+    }
+  }, [user, history]);
 };

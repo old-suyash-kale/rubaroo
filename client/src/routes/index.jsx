@@ -1,10 +1,10 @@
 import React from 'react';
 
-import socket from '../socket';
+import { useAuth } from '../hooks';
 
 const Index = () => {
 
-  console.log('socket', socket);
+  useAuth();
 
   return (<div>
     Index
