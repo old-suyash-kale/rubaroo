@@ -4,13 +4,27 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const { exec } = require('child_process');
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
+let Users = [];
 
 app.use(express.static('client/build'));
 app.use(express.static('public'));
 
 io.on('connection', socket => {
-  console.log('connection: ', socket.id);
+  const { id } = socket;
+  let User = null;
+
+  socket.on('register', req => {
+    const { username } = req;
+    if (Users.find(o => o.username === username)) {
+      socket.emit('registered', { message: `${username} is not available.` });
+    } else {
+      User = { id, username };
+      Users.push(User);
+      socket.emit('registered', { User });
+    }
+  });
+
 });
 
 server.listen(PORT, () => {
